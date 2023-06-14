@@ -3,6 +3,8 @@ Savy Powershell Course
 
 I added this file straight from github
 
-I added this information locally
+I added this information on local end
+
+
 
 
