@@ -35,4 +35,6 @@ $obj = [PSCustomObject]@{
 
 Write-Output $obj
 
+# Get-CimInstance CIM_LogicalDisk | Select FreeSpace, @{Name='Fubar';Expression={$-.FreeSpace / 1gb}}
 
+Get-CimInstance CIM_LogicalDisk | Select FreeSpace, @{n='GB Free';e={$-.FreeSpace / 1gb}}
