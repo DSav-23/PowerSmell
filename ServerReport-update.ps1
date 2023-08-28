@@ -1,14 +1,16 @@
 # Refer to ServerReport.ps1 for more info on below script
 function Get-PowerSmell {
+    [CmdletBinding()]
     param (
-        $DriveLetter
+    [ValidateSet("C","D","E","F","G","H")]
+    [string]$DriveLetter = 'C'
     )
     # Retrieve system name (Dynamic assignment: Variable subject to change)
     $Version = (Get-ComputerInfo | Select-Object OsVersion).OsVersion
     $Name = $env:COMPUTERNAME
     $DiskInstance = Get-CimInstance CIM_LogicalDisk
     $DiskCount = $DiskInstance.count 
-    $FreeSpace = ($DiskInstance | Where-Object {$_.DeviceID -eq $DriveLetter}).FreeSpace
+    $FreeSpace = ($DiskInstance | Where-Object {$_.DeviceID -eq ($DriveLetter + ":")}).FreeSpace
     
     
     # Make a custom object
